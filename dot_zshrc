@@ -159,3 +159,7 @@ source <(fzf --zsh)
 unalias g
 
 [ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env"  # g shell setup
+
+export EDITOR="nvim"
+
+[ -f ~/.zsh_completion" ] && \. ~/.zsh_completion
