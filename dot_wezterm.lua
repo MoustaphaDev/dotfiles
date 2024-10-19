@@ -10,26 +10,28 @@ local config = wezterm.config_builder()
 config.color_scheme = "ChallengerDeep"
 config.window_background_opacity = 1
 config.window_padding = {
-	left = 2,
-	right = 2,
-	top = 0,
-	bottom = 0,
+  left = 2,
+  right = 2,
+  top = 0,
+  bottom = 0,
 }
--- config.font_size = 19
+config.font_size = 18.5
 config.font = wezterm.font("JetBrains Mono Nerd Font")
 
-config.keys = {
-	{
-		key = "F11",
-		action = wezterm.action.ToggleFullScreen,
-	},
+config.term = "wezterm"
 
-	-- Disable Ctrl+Shift+L by not assigning any action to it
-	{
-		key = "L",
-		mods = "CTRL|SHIFT",
-		action = "Nop",
-	},
+config.keys = {
+  {
+    key = "F11",
+    action = wezterm.action.ToggleFullScreen,
+  },
+
+  -- Disable Ctrl+Shift+L by not assigning any action to it
+  {
+    key = "L",
+    mods = "CTRL|SHIFT",
+    action = "Nop",
+  },
 }
 
 config.enable_tab_bar = false

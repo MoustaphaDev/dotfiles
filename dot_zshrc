@@ -78,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( git zsh-syntax-highlighting zsh-autosuggestions )
+plugins=( git zsh-syntax-highlighting zsh-autosuggestions zsh-vi-mode )
 
 if [ -x "$(command -v colorls)" ]; then
     alias ls="colorls"
@@ -155,10 +155,15 @@ fi
 
 source $(dirname $(gem which colorls))/tab_complete.sh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+function fzf_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  # fzf integration
+  source <(fzf --zsh)
+}
 
-# fzf integration
-source <(fzf --zsh)
+# Initialize fzf after zvm
+zvm_after_init_commands+=(fzf_init)
+
 
 # Load pyenv automatically by appending
 # the following to 
@@ -182,3 +187,9 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+
+# Copilot CLI aliases
+eval "$(gh copilot alias -- zsh)"
+
+# Alias to connect my headphones
+alias headphones="until bluetoothctl connect '41:0F:3D:7E:68:EF'; do  echo '[LOG] Attempting to connect...'  ; sleep 1; done"
