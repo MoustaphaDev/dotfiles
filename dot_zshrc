@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/coding/.zsh/completions:"* ]]; then export FPATH="/home/coding/.zsh/completions:$FPATH"; fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -137,7 +139,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # pnpm
-export PNPM_HOME="/home/$HOME/.local/share/pnpm"
+export PNPM_HOME="/$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -193,3 +195,14 @@ eval "$(gh copilot alias -- zsh)"
 
 # Alias to connect my headphones
 alias headphones="until bluetoothctl connect '41:0F:3D:7E:68:EF'; do  echo '[LOG] Attempting to connect...'  ; sleep 1; done"
+
+# bun completions
+[ -s "/home/coding/.bun/_bun" ] && source "/home/coding/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+. "/home/coding/.deno/env"
+
+# alias to grep filenames in the current directory
+alias rgf='rg --files --hidden | rg'
